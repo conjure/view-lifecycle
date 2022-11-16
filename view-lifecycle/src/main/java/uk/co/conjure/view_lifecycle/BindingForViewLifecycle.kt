@@ -28,16 +28,16 @@ import kotlin.reflect.KProperty
  * This simplifies the often suggested method of managing this memory leak by setting the binding
  * to null in onDestroyView like so:
  *
- * class LoggedInFragment : Fragment() {
+ * class MyFragment : Fragment() {
  *
- *      private var binding: FragmentLoggedInBinding? = null
+ *      private var binding: MyFragmentBinding? = null
  *
  *      override fun onCreateView(
  *          inflater: LayoutInflater,
  *          container: ViewGroup?,
  *          savedInstanceState: Bundle?
  *      ): View {
- *          binding = FragmentLoggedInBinding.inflate(inflater, container, false)
+ *          binding = MyFragmentBinding.inflate(inflater, container, false)
  *          return binding!!.root
  *      }
  *
