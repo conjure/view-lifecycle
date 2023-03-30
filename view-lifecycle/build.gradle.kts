@@ -44,6 +44,16 @@ tasks.withType<DokkaTask>().configureEach {
         separateInheritedMembers = false
         mergeImplicitExpectActualDeclarations = false
     }
+    dokkaSourceSets.configureEach {
+
+        val readmeFile = file("$projectDir/README.md")
+        println("Readme file: $readmeFile")
+        // If the module has a README, add it to the module's index
+        if (readmeFile.exists()) {
+            println("Readme file added")
+            includes.from(readmeFile)
+        }
+    }
 }
 
 dependencies {
