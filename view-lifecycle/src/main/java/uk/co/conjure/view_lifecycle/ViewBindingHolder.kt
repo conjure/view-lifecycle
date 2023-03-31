@@ -10,15 +10,25 @@ import androidx.viewbinding.ViewBinding
 import java.lang.Exception
 
 /**
- * Abstract base class for anything that holds reference to a [ViewBinding]. The binding instance
- * should be released once it is no longer needed after the view is destroyed.
+ * Manages a [ViewBinding] instance for a [Fragment] or [AppCompatActivity].
+ *
+ * Use one of the [registerBinding] methods to set the binding.
+ * The binding will automatically be released once it is no longer needed after the view is destroyed.
+ *
  */
 abstract class ViewBindingHolder<B : ViewBinding> : LifecycleOwner {
 
     private var _binding: B? = null
 
+    /**
+     * The Binding for this View.
+     * Only valid for the lifecycle of the View
+     */
     protected val binding: B get() = _binding!!
 
+    /**
+     * The Context for this View.
+     */
     protected val context: Context get() = _binding!!.root.context
 
     private var lifecycle: Lifecycle? = null
