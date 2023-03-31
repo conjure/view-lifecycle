@@ -9,6 +9,8 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val versionName = "1.0.0-alpha02"
+
 android {
     namespace = "uk.co.conjure.view_lifecycle"
     compileSdk = 32
@@ -34,6 +36,29 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            create<MavenPublication>("release") {
+                // Applies the component for the release build variant.
+                from(components["release"])
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = "uk.co.conjure"
+                artifactId = "view-lifecycle"
+                version = versionName
+            }
+        }
     }
 }
 
